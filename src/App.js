@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 
 import './App.css';
-import { Navigation } from './components/navigation';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
