@@ -5,7 +5,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import Model from './assets/workspace/DeskFull.gltf'
+import Desk from './assets/workspace/desk2.gltf'
+
 
 function App() {
 
@@ -28,8 +29,11 @@ useEffect (() => {
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.update();
 
-    camera.position.z = 10;
-    camera.position.y = 4;
+    camera.position.x = 5;
+    camera.position.z = 1;
+    camera.position.y = 5;
+    
+    
 
 
 
@@ -53,7 +57,7 @@ const loader = new GLTFLoader();
 // Load a glTF resource
 loader.load(
 	// resource URL
-	Model,
+	Desk,
 	// called when the resource is loaded 
 	function ( gltf ) {
 
@@ -74,6 +78,8 @@ loader.load(
 	}
 );
 
+    
+
     // const boxGeometry = new THREE.BoxGeometry(16,16,16);
     // const boxMaterial = new THREE.MeshNormalMaterial();
     // const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
@@ -85,7 +91,7 @@ loader.load(
       controls.update();
       renderer.render(scene, camera);
       window.requestAnimationFrame(animate);
-      
+     
 
     };
     animate();
@@ -97,7 +103,6 @@ loader.load(
 
     <div>
       <canvas id="myThreeJsCanvas" />
-      <p>hello</p>
     </div>
   );
 }
