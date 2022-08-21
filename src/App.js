@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import {FlyControls } from "three/examples/jsm/controls/FlyControls.js"
 import Desk from './assets/workspace/desk2.gltf'
 
 
@@ -78,20 +79,33 @@ loader.load(
 	}
 );
 
-    
+
 
     // const boxGeometry = new THREE.BoxGeometry(16,16,16);
     // const boxMaterial = new THREE.MeshNormalMaterial();
     // const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
     // scene.add(boxMesh);
 
+
+    var flyControls = new FlyControls(camera, renderer.domElement);
+    flyControls.dragToLook = true;
+    flyControls.movementSpeed = 10;
+    flyControls.rollSpeed = 1;
+    var lt = new Date();
+
     const animate = () => {
       // boxMesh.rotation.x += 0.01;
       // boxMesh.rotation.y += 0.002;
+
+      var now = new Date(),
+      secs = (now - lt) / 1000;
+      lt = now;
+
       controls.update();
-      renderer.render(scene, camera);
+      flyControls.update(1 * secs);
+
       window.requestAnimationFrame(animate);
-     
+      renderer.render(scene, camera);
 
     };
     animate();
