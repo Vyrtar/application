@@ -7,7 +7,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import {FlyControls } from "three/examples/jsm/controls/FlyControls.js"
 
-import DeskFull from './assets/workspace/deskfull2.gltf'
+import DeskFull from './assets/workspace/schreibtischfull.gltf'
 
 
 
@@ -35,11 +35,6 @@ useEffect (() => {
     camera.position.x = 5;
     camera.position.z = 1;
     camera.position.y = 5;
-    
-    
-
-
-
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
