@@ -6,7 +6,9 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import {FlyControls } from "three/examples/jsm/controls/FlyControls.js"
-import Desk from './assets/workspace/deskfull.gltf'
+
+import DeskFull from './assets/workspace/deskfull2.gltf'
+
 
 
 function App() {
@@ -41,46 +43,47 @@ useEffect (() => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1);
     
     scene.add(ambientLight);
 
     const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
-    directionalLight.position.set(-5,5,0);
+    directionalLight.castShadow = true
+    directionalLight.position.set(-8,5,0);
+
+ 
 
 
+   
   
     scene.add( directionalLight );
 
 
-// Instantiate a loader
+// // Instantiate a loader
 const loader = new GLTFLoader();
-
-
 
 // Load a glTF resource
 loader.load(
 	// resource URL
-	Desk,
+  DeskFull,
 	// called when the resource is loaded 
 	function ( gltf ) {
-
+   
 		scene.add( gltf.scene );
-
 	},
 	// called while loading is progressing
 	function ( xhr ) {
-
 		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-
 	},
 	// called when loading has errors
 	function ( error ) {
-
 		console.log( error );
-
-	}
+	} 
 );
+
+
+
+
 
     var flyControls = new FlyControls(camera, renderer.domElement);
     flyControls.dragToLook = true;
@@ -112,6 +115,7 @@ loader.load(
     <div>
       <p>Controls: Right Mouse to drag the view. Left Mouse to rotate. Wheel to zoom. Have fun.</p>
       <canvas id="myThreeJsCanvas" />
+     
     </div>
   );
 }
