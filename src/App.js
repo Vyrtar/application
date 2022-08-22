@@ -6,7 +6,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import {FlyControls } from "three/examples/jsm/controls/FlyControls.js"
-import Desk from './assets/workspace/desk2.gltf'
+import Desk from './assets/workspace/deskfull.gltf'
 
 
 function App() {
@@ -46,7 +46,10 @@ useEffect (() => {
     scene.add(ambientLight);
 
     const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
-    directionalLight.castShadow = true;
+    directionalLight.position.set(-5,5,0);
+
+
+  
     scene.add( directionalLight );
 
 
@@ -79,23 +82,14 @@ loader.load(
 	}
 );
 
-
-
-    // const boxGeometry = new THREE.BoxGeometry(16,16,16);
-    // const boxMaterial = new THREE.MeshNormalMaterial();
-    // const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
-    // scene.add(boxMesh);
-
-
     var flyControls = new FlyControls(camera, renderer.domElement);
     flyControls.dragToLook = true;
-    flyControls.movementSpeed = 10;
+    flyControls.movementSpeed = 0;
     flyControls.rollSpeed = 1;
     var lt = new Date();
 
     const animate = () => {
-      // boxMesh.rotation.x += 0.01;
-      // boxMesh.rotation.y += 0.002;
+
 
       var now = new Date(),
       secs = (now - lt) / 1000;
@@ -116,6 +110,7 @@ loader.load(
 
 
     <div>
+      <p>Controls: Right Mouse to drag the view. Left Mouse to rotate. Wheel to zoom. Have fun.</p>
       <canvas id="myThreeJsCanvas" />
     </div>
   );
